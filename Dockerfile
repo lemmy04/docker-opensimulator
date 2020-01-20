@@ -21,7 +21,7 @@ RUN echo $TZ > /etc/timezone && apt-get update && DEBIAN_FRONTEND=noninteractive
                     && rm -rf /var/lib/apt/lists/*
 
 
-ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-11012019.v0.9.1.26b5aff.zip", "/tmp/opensim.zip"]
+ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-12182019.v0.9.1.066a6fb.zip", "/tmp/opensim.zip"]
 
 
 RUN mkdir -p /opt/opensim
