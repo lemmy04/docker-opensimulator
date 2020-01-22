@@ -1,5 +1,5 @@
 #Name of container: docker-opensimulator-osgrid
-#Version of container: 0.10.0
+#Version of container: 0.9.1.066a6fb
 
 FROM opensuse/leap:latest
 MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
@@ -15,7 +15,7 @@ RUN zypper patch -y -l --with-optional ; exit 0
 RUN zypper patch -y -l --with-optional ; exit 0
 
 ## install everything needed to run the bot
-RUN zypper install -y -l --recommends mono-core mono-extras unzip curl screen sed less
+RUN zypper install -y -l --recommends mono-core mono-extras unzip curl screen sed less htop
 
 ## clean zypper cache for smaller image
 RUN zypper cc --all
@@ -32,28 +32,31 @@ RUN useradd \
         -U \
         opensim
 
-
-
+##Adding opensim zip file
+# Unpacking to /home/opensim/opensim
 ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-12182019.v0.9.1.066a6fb.zip", "/tmp/opensim.zip"]
 RUN unzip -d /home/opensim/opensim /tmp/opensim.zip
+
+# create persistence
 RUN mkdir -p /home/opensim/opensim/bin/persistence
 
+# add opensim preconfigured ini files
 ADD ["http://download.osgrid.org/OpenSim.ini.txt", "/home/opensim/opensim/bin/OpenSim.ini"]
 ADD ["http://download.osgrid.org/GridCommon.ini.txt", "/home/opensim/opensim/bin/config-include/GridCommon.ini"]
 ADD ["http://download.osgrid.org/FlotsamCache.ini.txt", "/home/opensim/opensim/bin/config-include/FlotsamCache.ini"]
 ADD ["SQLiteStandalone.ini", "/home/opensim/opensim/bin/config-include/storage/SQLiteStandalone.ini"]
 
+# add startup script
 COPY opensim.sh /home/opensim/opensim/bin
 
+# fix owner and perms
 RUN chmod +x /home/opensim/opensim/bin/opensim.sh
-
 RUN chown -R opensim:opensim /home/opensim/opensim
 
 # To allow access from outside of the container  to the container service at these ports
 # Need to allow ports access rule at firewall too .  
 EXPOSE 9000-9003/tcp
 EXPOSE 9000-9003/udp
-
 
 WORKDIR /home/opensim/opensim/bin
 USER opensim
