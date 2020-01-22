@@ -18,11 +18,11 @@ To install docker in Ubuntu 18.04 use the commands:
 ## Usage
 
 This container image is setup for connectiong to [OSGrid][8], and running up to 4 regions on the ports 9000-9003.
-If you already have a Regions.ini file, map it into the container as /opt/opensim/bin/Regions/Regions.ini using -v
+If you already have a Regions.ini file, map it into the container as /home/opensim/opensim/bin/Regions/Regions.ini using -v
 If you don't, run the "first configuration" step described in the next section.
 
 If you want your region data to persist across container recreations or
-updates, mount a volume or a folder into /opt/opensim/bin/persistence
+updates, mount a volume or a folder into /home/opensim/opensim/bin/persistence
 
 To run container use the command below:
 
@@ -31,14 +31,15 @@ To run container use the command below:
                  -p 9001:9001 -p 9001:9001/udp \
                  -p 9002:9002 -p 9002:9002/udp \
                  -p 9003:9003 -p 9003:9003/udp \
-                 { -v your.region.ini:/opt/opensim/bin/Regions/Regions.ini} \
-		 { -v osgrid_data:/opt/opensim/bin/persistence } \
+                 { -v your.region.ini:/home/opensim/opensim/bin/Regions/Regions.ini} \
+		 { -v osgrid_data:/home/opensim/opensim/bin/persistence } \
                  lemmy04/opensim-osgrid:latest
 
  
 ## For the first configuration :
 
-     $ docker exec -it container_id after_install
+     $ docker exec -it container_id /bin/bash --login
+     $ screen -r
 
 Them respond the questions relate to virtual word : 
 
@@ -74,6 +75,7 @@ Region (.....) #
 
  - 'quit' command to continue.
 
+The container will shut down now, and has to be restarted.
 
 ## Use viewer to check the virtual world create by OpenSimulator:
 
@@ -103,5 +105,4 @@ To help improve this container [lemmy04/docker-opensimulator-osgrid][5]
 [4]:http://docs.docker.com
 [5]:https://github.com/lemmy04/docker-opensimulator-osgrid
 [6]:http://wiki.kokuaviewer.org/wiki/Imprudence:Downloads
-[7]:https://www.quantumobject.org/
 [8]:https://www.osgrid.org/
