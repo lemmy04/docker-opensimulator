@@ -6,7 +6,7 @@ MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
 LABEL version=0.9.1.066a6fb Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
 
 ## install all updates
-## Date: 2020-01-26
+## Date: 2020-01-27
 
 RUN zypper ref
 RUN zypper patch -y -l --with-optional ; exit 0
