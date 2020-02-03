@@ -1,14 +1,14 @@
 #Name of container: docker-opensimulator-osgrid
 #Version of container: 0.9.1.066a6fb
 
-FROM opensuse/leap:latest
+FROM opensuse/tumbleweed:latest
 MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
 LABEL version=0.9.1.066a6fb Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
 
 ## install all updates
-## Date: 2020-01-27
-
-RUN zypper ref
+## Date: 2020-02-03
+RUN zypper --gpg-auto-import-keys addrepo -r https://download.opensuse.org/repositories/Mono:/Factory/openSUSE_Factory/Mono:Factory.repo -e -f -p 50
+RUN zypper --gpg-auto-import-keys ref
 RUN zypper patch -y -l --with-optional ; exit 0
 
 ## do it again, could be an update for zypper in there
