@@ -3,10 +3,10 @@
 
 FROM opensuse/tumbleweed:latest
 MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
-LABEL version=0.9.1.066a6fb Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
+LABEL version=0.9.2.270a3e3 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
 
 ## install all updates
-## Date: 2020-02-07
+## Date: 2020-03-05
 RUN zypper --gpg-auto-import-keys addrepo -r https://download.opensuse.org/repositories/Mono:/Factory/openSUSE_Factory/Mono:Factory.repo -e -f -p 50
 RUN zypper --gpg-auto-import-keys ref
 RUN zypper patch -y -l --with-optional ; exit 0
@@ -34,7 +34,7 @@ RUN useradd \
 
 ##Adding opensim zip file
 # Unpacking to /home/opensim/opensim
-ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-12182019.v0.9.1.066a6fb.zip", "/tmp/opensim.zip"]
+ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-02212020.v0.9.2.270a3e3.zip", "/tmp/opensim.zip"]
 RUN unzip -d /home/opensim/opensim /tmp/opensim.zip
 
 # create persistence
