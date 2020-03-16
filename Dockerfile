@@ -3,10 +3,10 @@
 
 FROM opensuse/tumbleweed:latest
 MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
-LABEL version=0.9.2.270a3e3 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
+LABEL version=0.9.2.dev.cfef190 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
 
 ## install all updates
-## Date: 2020-03-14
+## Date: 2020-03-16
 RUN zypper --gpg-auto-import-keys addrepo -r https://download.opensuse.org/repositories/Mono:/Factory/openSUSE_Factory/Mono:Factory.repo -e -f -p 50
 RUN zypper --gpg-auto-import-keys ref
 RUN zypper patch -y -l --with-optional ; exit 0
@@ -34,7 +34,7 @@ RUN useradd \
 
 ##Adding opensim zip file
 # Unpacking to /home/opensim/opensim
-ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-02212020.v0.9.2.270a3e3.zip", "/tmp/opensim.zip"]
+ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-03152010.v0.9.2.cfef190.zip", "/tmp/opensim.zip"]
 RUN unzip -d /home/opensim/opensim /tmp/opensim.zip
 
 # create persistence
@@ -45,6 +45,9 @@ ADD ["http://download.osgrid.org/OpenSim.ini.txt", "/home/opensim/opensim/bin/Op
 ADD ["http://download.osgrid.org/GridCommon.ini.txt", "/home/opensim/opensim/bin/config-include/GridCommon.ini"]
 ADD ["http://download.osgrid.org/FlotsamCache.ini.txt", "/home/opensim/opensim/bin/config-include/FlotsamCache.ini"]
 ADD ["SQLiteStandalone.ini", "/home/opensim/opensim/bin/config-include/storage/SQLiteStandalone.ini"]
+
+# rename osslEnable.ini.example
+RUN mv /home/opensim/opensim/bin/config-include/osslEnable.ini.example /home/opensim/opensim/bin/config-include/osslEnable.ini
 
 # add startup script
 COPY opensim.sh /home/opensim/opensim/bin
