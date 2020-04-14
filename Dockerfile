@@ -36,6 +36,7 @@ RUN useradd \
 # Unpacking to /home/opensim/opensim
 ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-03152010.v0.9.2.cfef190.zip", "/tmp/opensim.zip"]
 RUN unzip -d /home/opensim/opensim /tmp/opensim.zip
+RUN rm /tmp/opensim.zip
 
 # create persistence
 RUN mkdir -p /home/opensim/opensim/bin/persistence
