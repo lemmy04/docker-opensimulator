@@ -6,7 +6,7 @@ MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
 LABEL version=0.9.2.dev.c097f14 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
 
 ## install all updates
-## Date: 2020-04-19
+## Date: 2020-05-07
 RUN zypper --gpg-auto-import-keys addrepo -r https://download.opensuse.org/repositories/Mono:/Factory/openSUSE_Factory/Mono:Factory.repo -e -f -p 50
 RUN zypper --gpg-auto-import-keys ref
 RUN zypper patch -y -l --with-optional ; exit 0
