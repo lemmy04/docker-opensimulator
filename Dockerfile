@@ -1,7 +1,7 @@
 #Name of container: docker-opensimulator-osgrid
 #Version of container: 0.9.2.b598573
 
-FROM lemmy04/mono-base:latest
+FROM lemmy04/mono-base:0.1
 
 MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
 
