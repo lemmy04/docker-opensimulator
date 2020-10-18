@@ -5,10 +5,10 @@ FROM lemmy04/mono-base:0.1
 
 MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
 
-LABEL version=0.9.2.b598573 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
+LABEL version=0.9.2.3049658 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
 
 ## install all updates
-## Date: 2020-09-02
+## Date: 2020-10-18
 
 ## setup /run/uscreens
 RUN mkdir -p /run/uscreens
@@ -24,7 +24,7 @@ RUN useradd \
 
 ##Adding opensim zip file
 # Unpacking to /home/opensim/opensim
-ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-05222020.v0.9.2.b598573.zip", "/tmp/opensim.zip"]
+ADD ["http://danbanner.onikenkon.com/osgrid/osgrid-opensim-10172020.v0.9.2.3049658.zip", "/tmp/opensim.zip"]
 RUN unzip -d /home/opensim/opensim /tmp/opensim.zip
 RUN rm /tmp/opensim.zip
 
