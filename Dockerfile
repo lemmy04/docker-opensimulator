@@ -24,7 +24,7 @@ RUN useradd \
 
 ##Adding opensim zip file
 # Unpacking to /home/opensim/opensim
-ADD ["https://danbanner.onikenkon.com/osgrid/osgrid-opensim-10312020.v0.9.2.f25b128.zip", "/tmp/opensim.zip"]
+ADD ["https://danbanner.onikenkon.com/osgrid/osgrid-opensim-11072020.v0.9.2.f25b128.zip", "/tmp/opensim.zip"]
 RUN unzip -d /home/opensim/opensim /tmp/opensim.zip
 RUN rm /tmp/opensim.zip
 
