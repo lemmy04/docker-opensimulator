@@ -1,11 +1,11 @@
 #Name of container: docker-opensimulator-osgrid
-#Version of container: 0.9.2.e24dd01
+#Version of container: 0.9.2.4afc1e3
 
 FROM lemmy04/mono-base:0.1
 
 MAINTAINER lemmy04 <Mathias.Homann@openSUSE.org>
 
-LABEL version=0.9.2.dev.1b9cea0 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
+LABEL version=0.9.2.dev.4afc1e3 Description="For running an opensim that hooks into osgrid instance in a docker container." Vendor="Mathias.Homann@openSUSE.org"
 
 ## install all updates
 ## Date: 2020-11-27
@@ -24,7 +24,7 @@ RUN useradd \
 
 ##Adding opensim zip file
 # Unpacking to /home/opensim/opensim
-ADD ["https://danbanner.onikenkon.com/osgrid/osgrid-opensim-05122021.v0.9.2.1b9cea0.zip", "/tmp/opensim.zip"]
+ADD ["https://danbanner.onikenkon.com/osgrid/osgrid-opensim-08132021.v0.9.2.4afc1e3.zip", "/tmp/opensim.zip"]
 RUN unzip -d /home/opensim/opensim /tmp/opensim.zip
 RUN rm /tmp/opensim.zip
 
